@@ -13,7 +13,16 @@
     "react-dom": "17.0.2"
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.2",
     "eslint": "8.7.0",
-    "eslint-config-next": "12.0.8"
+    "eslint-config-next": "12.0.8",
+    "graphql": "^16.2.0",
+    "graphql-request": "^3.7.0",
+    "html-react-parser": "^1.4.5",
+    "moment": "^2.29.1",
+    "postcss": "^8.4.5",
+    "react-multi-carousel": "^2.6.5",
+    "sass": "^1.48.0",
+    "tailwindcss": "^3.0.15"
   }
 }
