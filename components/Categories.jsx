@@ -1,5 +1,5 @@
 function Categories() {
-  return <div>kategori Components</div>;
+  return <div>Kategori</div>;
 }
 
 export default Categories;
