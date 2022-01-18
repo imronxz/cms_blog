@@ -10,9 +10,9 @@ function PostCard({ post }) {
       <div className="relative overflow-hidden shadow-md pb-80 mb-6">
         <Image
           priority={true}
+          placeholder="true"
           src={post.thumbnailImage.url}
           layout="fill"
-          unoptimized={post.thumbnailImage.toString()}
           alt={post.title}
           className="object-top absolute h-80 w-full object-cover shadow-lg rounded-t-lg lg:rounded-lg"
         />
@@ -23,7 +23,7 @@ function PostCard({ post }) {
       {/* Admin Post, photo dan nama  */}
       <div className="block lg:flex text-center items-center justify-center mb-8 w-full">
         <div className="flex items-center justify-center mb-4 lg:mb-0 w-full lg:w-auto mr-8">
-          <img
+          <Image
             src={post.admin.photo.url}
             alt={post.admin.nama}
             height="30px"

@@ -26,7 +26,7 @@ function DetailPost({ post }) {
           <div className="relative lg:sticky top-8">
             <PostWidget
               slug={post.slug}
-              kategoris={post.kategoris.map((kategori) => {
+              kategoris={post?.kategoris?.map((kategori) => {
                 kategori.slug;
               })}
             />

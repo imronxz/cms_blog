@@ -11,7 +11,7 @@ const PostWidget = ({ kategoris, slug }) => {
   const [postTerkait, setPostTerkait] = useState([]);
 
   useEffect(() => {
-    if (!slug) {
+    if (slug && slug === undefined) {
       postinganTerkait(kategoris, slug).then((result) => {
         setPostTerkait(result);
       });
