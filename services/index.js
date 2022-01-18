@@ -72,8 +72,8 @@ export const postinganTerbaru = async () => {
   const result = await request(graphqlAPI, query);
   return result.posts;
 };
-
-export const postinganTerkait = async () => {
+// TODO: related post
+export const postinganTerkait = async (kategoris, slug) => {
   const query = gql`
     query GetPostDetails($slug: String!, $kategoris: [String!]) {
       posts(
@@ -89,10 +89,11 @@ export const postinganTerkait = async () => {
       }
     }
   `;
-  const result = await request(graphqlAPI, query);
+  const result = await request(graphqlAPI, query, { slug, kategoris });
+
   return result.posts;
 };
-
+// TODO: category post
 export const postinganKategori = async () => {
   const query = gql`
     query GetPostDetails {
@@ -106,6 +107,43 @@ export const postinganKategori = async () => {
   return result.kategoris;
 };
 
+// TODO: detailPost
+export const detailPost = async (slug) => {
+  const query = gql`
+    query GetPostDetails($slug: String!) {
+      post(where: { slug: $slug }) {
+        admin {
+          bio
+          nama
+          id
+          photo {
+            url
+          }
+        }
+        createdAt
+        slug
+        title
+        kutipan
+        thumbnailImage {
+          url
+        }
+        kategoris {
+          nama
+          stage
+        }
+        kontent {
+          raw
+        }
+      }
+    }
+  `;
+  //TODO:  request(graphqlAPI, query)
+  const result = await request(graphqlAPI, query, { slug });
+
+  // TODO: return result.postsConnection.edges.map(({ node }) => node);
+  return result.post;
+};
+
 export const gambarGraphCMS = async () => {
   const query = gql`
     query GetPostDetails {
@@ -114,6 +152,6 @@ export const gambarGraphCMS = async () => {
       }
     }
   `;
-  const result = await graphcms.request(graphqlAPI, query);
+  const result = await request(graphqlAPI, query);
   return result.posts;
 };

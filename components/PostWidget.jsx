@@ -8,19 +8,19 @@ import { postinganTerbaru, postinganTerkait } from '../services';
 import Image from 'next/image';
 
 const PostWidget = ({ kategoris, slug }) => {
-  const [relatedPost, setRelatedPost] = useState([]);
+  const [postTerkait, setPostTerkait] = useState([]);
 
   useEffect(() => {
-    if (slug) {
+    if (!slug) {
       postinganTerkait(kategoris, slug).then((result) => {
-        setRelatedPost(result);
+        setPostTerkait(result);
       });
     } else {
       postinganTerbaru().then((result) => {
-        setRelatedPost(result);
+        setPostTerkait(result);
       });
     }
-  }, [slug]);
+  }, [slug, kategoris]);
 
   return (
     <div className="bg-white shadow-lg rounded-lg p-8 pb-12 mb-8">
@@ -28,14 +28,13 @@ const PostWidget = ({ kategoris, slug }) => {
         {slug ? 'Postingan Terkait' : 'Postingan Terbaru'}
       </h3>
       {/* Array mapping relatedPost -> ThumbnailImage.url */}
-      {relatedPost.map((post, index) => (
+      {postTerkait.map((post, index) => (
         <div key={index} className="flex items-center w-full mb-4">
           <div className="w-16 flex-none">
             <Image
               alt={post.title}
               height="60px"
               width="60px"
-              unoptimized
               className="align-middle rounded-full"
               src={post.thumbnailImage.url}
             />

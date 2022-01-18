@@ -4,14 +4,15 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 function PostCard({ post }) {
-  console.log(post);
-
   return (
     <div className="bg-white shadow-lg rounded-lg p-0 lg:p-8 pb-12 mb-8">
       {/* Judul/Title Post blog */}
       <div className="relative overflow-hidden shadow-md pb-80 mb-6">
-        <img
+        <Image
+          priority={true}
           src={post.thumbnailImage.url}
+          layout="fill"
+          unoptimized={post.thumbnailImage.toString()}
           alt={post.title}
           className="object-top absolute h-80 w-full object-cover shadow-lg rounded-t-lg lg:rounded-lg"
         />
