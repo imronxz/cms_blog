@@ -5,6 +5,7 @@ import moment from 'moment';
 import Link from 'next/link';
 
 import { postinganTerbaru, postinganTerkait } from '../services';
+import Image from 'next/image';
 
 const PostWidget = ({ kategoris, slug }) => {
   const [relatedPost, setRelatedPost] = useState([]);
@@ -20,18 +21,17 @@ const PostWidget = ({ kategoris, slug }) => {
       });
     }
   }, [slug]);
-  console.log(relatedPost);
 
   return (
     <div className="bg-white shadow-lg rounded-lg p-8 pb-12 mb-8">
       <h3 className="text-xl mb-8 font-semibold border-b pb-4">
-        {slug ? 'Related Posts' : 'Recent Posts'}
+        {slug ? 'Postingan Terkait' : 'Postingan Terbaru'}
       </h3>
       {/* Array mapping relatedPost -> ThumbnailImage.url */}
       {relatedPost.map((post, index) => (
         <div key={index} className="flex items-center w-full mb-4">
           <div className="w-16 flex-none">
-            <img
+            <Image
               alt={post.title}
               height="60px"
               width="60px"
@@ -42,7 +42,7 @@ const PostWidget = ({ kategoris, slug }) => {
           </div>
           {/* moment Tanggal Post dan Judul/Title Post */}
           <div className="flex-grow ml-4">
-            <p className="text-gray-500 text-xs">
+            <p className="text-gray-700 text-xs">
               {moment(post.createdAt).format('DD - MMMM - YYYY')}
             </p>
             <Link href={`/post/${post.slug}`} className="text-md" key={index}>
