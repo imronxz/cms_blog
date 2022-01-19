@@ -10,7 +10,6 @@ import {
 } from '../../components';
 
 function DetailPost({ post }) {
-  console.log(post);
   return (
     <div className="container mx-auto p-10 mb-8">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
@@ -26,9 +25,11 @@ function DetailPost({ post }) {
           <div className="relative lg:sticky top-8">
             <PostWidget
               slug={post.slug}
-              kategoris={post?.kategoris?.map((kategori) => {
-                kategori.slug;
-              })}
+              kategoris={
+                !!post.kategoris.map((kategori) => {
+                  kategori.slug;
+                })
+              }
             />
             <Categories />
           </div>

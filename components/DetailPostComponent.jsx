@@ -3,17 +3,17 @@ import moment from 'moment';
 import Image from 'next/image';
 
 const DetailPostComponent = ({ post }) => {
-  const blogKontent = (index, text, kontents, type) => {
+  const blogKontent = (index, text, kontens, type) => {
     let modifTeks = text;
 
-    if (kontents) {
-      if (kontents.bold) {
+    if (kontens) {
+      if (kontens.bold) {
         modifTeks = <b key={index}>{text}</b>;
       }
-      if (kontents.italic) {
+      if (kontens.italic) {
         modifTeks = <em key={index}>{text}</em>;
       }
-      if (kontents.underline) {
+      if (kontens.underline) {
         modifTeks = <u key={index}>{text}</u>;
       }
     }
@@ -46,10 +46,10 @@ const DetailPostComponent = ({ post }) => {
         return (
           <Image
             key={index}
-            alt={kontents.title}
-            height={kontents.height}
-            width={kontents.width}
-            src={kontents.src}
+            alt={kontens.title}
+            height={kontens.height}
+            width={kontens.width}
+            src={kontens.src}
             priority={true}
             placeholder="true"
           />

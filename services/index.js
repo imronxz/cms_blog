@@ -1,11 +1,7 @@
 //! graphql
-import { GraphQLClient, request, gql } from 'graphql-request';
+import { request, gql } from 'graphql-request';
 //! endpoints graphcms
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
-
-const graphcms = new GraphQLClient(
-  'https://api-ap-northeast-1.graphcms.com/v2/ckyipg7c6086v01yy0rjter6q/master',
-);
 
 // TODO: getting API from graphcms query
 export const getPosts = async () => {
