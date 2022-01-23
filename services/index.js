@@ -7,7 +7,7 @@ const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 export const getPosts = async () => {
   const query = gql`
     query MyQuery {
-      postsConnection( orderBy: createdAt_DESC) {
+      postsConnection(orderBy: createdAt_DESC) {
         edges {
           node {
             admin {
@@ -115,8 +115,7 @@ export const postinganKategori = async () => {
 export const detailPost = async (slug) => {
   const query = gql`
     query GetPostDetails($slug: String!) {
-      post(
-        where: { slug: $slug }) {
+      post(where: { slug: $slug }) {
         admin {
           bio
           nama
@@ -178,6 +177,7 @@ export const getKomentar = async (slug) => {
   return result.koments;
 };
 
+// TODO: getPostsTerkait
 export const getPostTerkait = async () => {
   const query = gql`
   query GetPostDetails(){
@@ -201,6 +201,7 @@ export const getPostTerkait = async () => {
   return result.posts;
 };
 
+// TODO: getPostKategori
 export const getPostinganKategori = async (slug) => {
   const query = gql`
     query GetCategoryPost($slug: String!) {
@@ -237,6 +238,7 @@ export const getPostinganKategori = async (slug) => {
   return result.postsConnection.edges;
 };
 
+// TODO: Adjacent Posts
 export const getAdjacentPosts = async (createdAt, slug) => {
   const query = gql`
     query GetAdjacentPosts($createdAt: DateTime!, $slug: String!) {
