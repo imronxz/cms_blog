@@ -2,6 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import Image from 'next/image';
 
+// @DetailPost @
 const DetailPostComponent = ({ post }) => {
   const blogKontent = (index, text, kontens, type) => {
     let modifTeks = text;
@@ -58,7 +59,7 @@ const DetailPostComponent = ({ post }) => {
         return modifTeks;
     }
   };
-
+  // return data see the function #DetailPost
   return (
     <div className="bg-white shadow-lg rounded-lg p-8 pb-12 mb-8">
       <div className="relative overflow-hidden shadow-md mb-6">

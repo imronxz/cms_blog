@@ -2,8 +2,6 @@ import { getPosts } from '../services';
 import { PostCard, PostWidget, Categories } from '../components';
 
 import Head from 'next/head';
-import Image from 'next/image';
-import styles from '../styles/Home.module.css';
 
 export default function Home({ posts }) {
   return (
@@ -16,7 +14,7 @@ export default function Home({ posts }) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           <div className="lg:col-span-8 col-span-1">
             {posts.map((post, index) => (
-              <PostCard post={post.node} key={index} />
+              <PostCard key={index} post={post.node} />
             ))}
           </div>
           <div className="lg:col-span-4 col-span-1">
@@ -32,11 +30,10 @@ export default function Home({ posts }) {
 }
 
 export async function getStaticProps() {
-  const posts = await getPosts();
-
+  const posts = (await getPosts()) || [];
   return {
     props: {
-      posts,
-    },
+      posts
+    }
   };
 }

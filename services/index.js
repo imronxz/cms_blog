@@ -1,4 +1,4 @@
-//! graphql
+//! @graphqlDoc @
 import { request, gql } from 'graphql-request';
 //! endpoints graphcms
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
@@ -27,7 +27,7 @@ export const getPosts = async () => {
             }
             kategoris {
               nama
-              stage
+              slug
             }
           }
         }
@@ -41,7 +41,8 @@ export const getPosts = async () => {
   return result.postsConnection.edges;
 };
 
-/** @getRecentPost {async}
+/** @postinganbaru @
+ *  @postinganTerbaru {slug}
  *  @GetPostDetails {function, (post)}: get post details
  *  @orderBy {object} : createdAt_ASC ,last: 3
  *  @title: title of post
@@ -65,11 +66,14 @@ export const postinganTerbaru = async () => {
     }
   }
   `;
+  // request (graphqlAPI dan qeury)
+  // return results #postinganbaru
   const result = await request(graphqlAPI, query);
   return result.posts;
 };
-// TODO: related post
-export const postinganTerkait = async (kategoris, slug) => {
+// TODO: @postinganterkait @
+
+export const postTerkait = async (kategoris, slug) => {
   const query = gql`
     query GetPostDetails($slug: String!, $kategoris: [String!]) {
       posts(
@@ -85,11 +89,14 @@ export const postinganTerkait = async (kategoris, slug) => {
       }
     }
   `;
+  // #postinganterkait dengan param(kategoris, slug)
+
   const result = await request(graphqlAPI, query, { slug, kategoris });
 
   return result.posts;
 };
-// TODO: category post
+
+// TODO: @kategoripost @
 export const postinganKategori = async () => {
   const query = gql`
     query GetPostDetails {
@@ -100,6 +107,7 @@ export const postinganKategori = async () => {
     }
   `;
   const result = await request(graphqlAPI, query);
+  // graplcms query #kategoripost
   return result.kategoris;
 };
 
@@ -125,7 +133,7 @@ export const detailPost = async (slug) => {
         }
         kategoris {
           nama
-          stage
+          slug
         }
         kontent {
           raw
@@ -140,6 +148,35 @@ export const detailPost = async (slug) => {
   return result.post;
 };
 
+//TODO: kirimKoment to backend next.js api/komentar
+export const kirimKomentar = async (obj) => {
+  const result = await fetch('/api/koment', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(obj),
+  });
+
+  return result.json();
+};
+
+// TODO: @kategoripost @
+export const getKomentar = async (slug) => {
+  const query = gql`
+    query GetKomentar($slug: String!) {
+      koments(where: { post: { slug: $slug } }) {
+        nama
+        createdAt
+        koment
+      }
+    }
+  `;
+  const result = await request(graphqlAPI, query, { slug });
+  // graplcms query #kategoripost
+  return result.koments;
+};
+
 export const gambarGraphCMS = async () => {
   const query = gql`
     query GetPostDetails {
@@ -151,3 +188,4 @@ export const gambarGraphCMS = async () => {
   const result = await request(graphqlAPI, query);
   return result.posts;
 };
+
