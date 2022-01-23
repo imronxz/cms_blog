@@ -1,6 +1,15 @@
 import { getPosts, detailPost } from '../../services';
 import { useRouter } from 'next/router';
-import { DetailPostComponent, Categories, PostWidget, Admin, Comments, CommentForm } from '../../components';
+import {
+  DetailPostComponent,
+  Categories,
+  PostWidget,
+  Admin,
+  Comments,
+  CommentForm,
+} from '../../components';
+import { AdjacentPosts } from '../../sections';
+
 
 function DetailPost({ post }) {
   return (
@@ -10,6 +19,7 @@ function DetailPost({ post }) {
         <div className="col-span-1 lg:col-span-8">
           <DetailPostComponent post={post} />
           <Admin admin={post.admin} />
+          <AdjacentPosts slug={post.slug} createdAt={post.createdAt} />
           <CommentForm slug={post.slug} />
           <Comments slug={post.slug} />
         </div>
@@ -37,8 +47,8 @@ export async function getStaticProps({ params }) {
   const data = await detailPost(params.slug);
   return {
     props: {
-      post: data
-    }
+      post: data,
+    },
   };
 }
 
@@ -49,6 +59,6 @@ export async function getStaticPaths() {
   return {
     /* TODO: Mapping posts graphqlcms -> node{ slug } return -> params{ slug } */
     paths: posts.map(({ node: { slug } }) => ({ params: { slug } })),
-    fallback: false
+    fallback: true,
   };
 }

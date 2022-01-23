@@ -56,13 +56,13 @@ function PostCard({ post }) {
       </div>
       {/* Kutipan blog post */}
       <p className="text-center text-lg text-gray-700 font-normal px-4 lg:px-20 mb-8">
-        {post.kutipan}
+        {post.kutipan.slice(0, 100)}
       </p>
       {/* BUTTON */}
       <div className="text-center">
         <Link href={`/post/${post.slug}`}>
           <span className="transition duration-500 tansform hover:-translate-y-1 inline-block bg-pink-600 text-lg font-medium rounded-full text-white px-8 py-3 cursor-pointer">
-            Lanjutkan Membaca
+            Baca lebih banyak...
           </span>
         </Link>
       </div>

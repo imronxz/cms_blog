@@ -6,10 +6,9 @@ import Head from 'next/head';
 
 export default function Home({ posts }) {
   return (
-    <>
       <div className="container mx-auto px-10 mb-8">
-        <Head>
-          <title>Graphcms Blog</title>
+        <Head key={posts.id}>
+        <title>{ posts.title}</title>
           <link rel="icon" href="favicon.ico" />
         </Head>
         <PostTerkait />
@@ -27,7 +26,6 @@ export default function Home({ posts }) {
           </div>
         </div>
       </div>
-    </>
   );
 }
 
@@ -35,7 +33,7 @@ export async function getStaticProps() {
   const posts = (await getPosts()) || [];
   return {
     props: {
-      posts,
+      posts
     },
   };
 }

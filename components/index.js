@@ -8,3 +8,5 @@ export { default as CommentForm } from './CommentForm';
 export { default as Admin } from './Admin';
 export { default as DetailPostComponent } from './DetailPostComponent';
 export { default as FeaturedPostCard } from './FeaturedPostCard';
+export { default as Loader } from './Loader';
+export { default as AdjacentPostCard } from './AdjacentPostCard';

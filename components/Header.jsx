@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
 //! graphql cms postingan Kategori
 import { postinganKategori } from '../services';
+import Head from 'next/head';
 
 const Header = () => {
   const [kategories, setKategories] = useState([]);
@@ -17,13 +18,14 @@ const Header = () => {
     <div className="container mx-auto px-10 mb-8">
       <div className="border-b w-full inline-block border-blue-400 py-8">
         {/* Title Blog */}
-        <div className="md:float-left block">
+        <div className="md:float-left flex">
           <Link href="/">
-            <span className="cursor-pointer font-bold text-4xl text-white">
-              Graphql ~ CMS
-            </span>
+            <span className="cursor-pointer font-bold text-4xl text-white">Blog</span>
           </Link>
         </div>
+        <Link href="/">
+          <img src="/next.svg" className="flex w-20 ml-1 md:float-left cursor-pointer" />
+        </Link>
         {/* Mapping kategories -> kategori.nama */}
         <div className="hidden md:float-left md:contents">
           {kategories.map((kategori) => (

@@ -34,9 +34,8 @@ const PostTerkait = () => {
       setDataLoaded(true);
     });
   }, []);
-  console.log(featuredPost);
 
-  const customLeftArrow = (
+  const CustomLeftArrow = (
     <div className="absolute arrow-btn left-0 text-center py-3 cursor-pointer bg-pink-600 rounded-full">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -55,7 +54,7 @@ const PostTerkait = () => {
     </div>
   );
 
-  const customRightArrow = (
+  const CustomRightArrow = (
     <div className="absolute arrow-btn right-0 text-center py-3 cursor-pointer bg-pink-600 rounded-full">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -77,16 +76,15 @@ const PostTerkait = () => {
   return (
     <div className="mb-8">
       <Carousel
+        ssr={true}
         infinite
-        customLeftArrow={customLeftArrow}
-        customRightArrow={customRightArrow}
+        customLeftArrow={CustomLeftArrow}
+        customRightArrow={CustomRightArrow}
         responsive={responsive}
         itemClass="px-4"
       >
         {dataLoaded &&
-          featuredPost.map((post, index) => (
-            <FeaturedPostCard key={index} post={post} />
-          ))}
+          featuredPost.map((post, index) => <FeaturedPostCard key={index} post={post} />)}
       </Carousel>
     </div>
   );

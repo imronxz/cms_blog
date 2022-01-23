@@ -11,7 +11,7 @@ const PostWidget = ({ kategoris, slug }) => {
   const [postinganTerkait, setPostTerkait] = useState([]);
 
   useEffect((slug) => {
-    if (slug) {
+    if (slug ) {
       postTerkait(kategoris, slug).then((result) => {
         setPostTerkait(result);
       });
@@ -24,18 +24,28 @@ const PostWidget = ({ kategoris, slug }) => {
 
   return (
     <div className="bg-white shadow-lg rounded-lg p-8 pb-12 mb-8">
-      <h3 className="text-xl mb-8 font-semibold border-b pb-4">{slug ? 'Postingan Terkait' : 'Postingan Terbaru'}</h3>
+      <h3 className="text-xl mb-8 font-semibold border-b pb-4">
+        {slug ? 'Postingan Terkait' : 'Postingan Terbaru'}
+      </h3>
       {/* Array mapping relatedPost -> ThumbnailImage.url */}
       {postinganTerkait.map((post) => (
         <div key={post.title} className="flex items-center w-full mb-4">
           <div className="w-16 flex-none">
-            <Image alt={post.title} height="60px" width="60px" className="align-middle rounded-full" src={post.thumbnailImage.url} />
+            <Image
+              alt={post.title}
+              height="60px"
+              width="60px"
+              className="align-middle rounded-full"
+              src={post.thumbnailImage.url}
+            />
           </div>
           {/* moment Tanggal Post dan Judul/Title Post */}
           <div className="flex-grow ml-4">
-            <p className="text-gray-700 text-xs">{moment(post.createdAt).format('DD - MMMM - YYYY')}</p>
+            <p className="text-gray-700 text-xs">
+              {moment(post.createdAt).format('DD - MMMM - YYYY')}
+            </p>
             <Link href={`/post/${post.slug}`} className="text-md" key={post.title}>
-              {post.title}
+              {post.title.slice(0,46)}
             </Link>
           </div>
         </div>
