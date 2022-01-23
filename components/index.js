@@ -7,3 +7,4 @@ export { default as Comments } from './Comments';
 export { default as CommentForm } from './CommentForm';
 export { default as Admin } from './Admin';
 export { default as DetailPostComponent } from './DetailPostComponent';
+export { default as FeaturedPostCard } from './FeaturedPostCard';

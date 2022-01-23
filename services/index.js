@@ -177,6 +177,29 @@ export const getKomentar = async (slug) => {
   return result.koments;
 };
 
+export const getPostTerkait = async () => {
+  const query = gql`
+  query GetPostDetails(){
+    posts(where: {postTerkait: true}){
+    admin{
+      nama
+      photo{
+        url
+      }
+    }
+    thumbnailImage{
+      url
+    }
+    title
+    slug
+    createdAt
+    }
+  }`;
+  const result = await request(graphqlAPI, query);
+
+  return result.posts;
+};
+
 export const gambarGraphCMS = async () => {
   const query = gql`
     query GetPostDetails {
@@ -188,4 +211,3 @@ export const gambarGraphCMS = async () => {
   const result = await request(graphqlAPI, query);
   return result.posts;
 };
-

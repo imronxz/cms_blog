@@ -1,5 +1,6 @@
 import { getPosts } from '../services';
 import { PostCard, PostWidget, Categories } from '../components';
+import { PostTerkait } from '../sections';
 
 import Head from 'next/head';
 
@@ -7,10 +8,11 @@ export default function Home({ posts }) {
   return (
     <>
       <div className="container mx-auto px-10 mb-8">
-        <h1>
+        <Head>
           <title>Graphcms Blog</title>
           <link rel="icon" href="favicon.ico" />
-        </h1>
+        </Head>
+        <PostTerkait />
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           <div className="lg:col-span-8 col-span-1">
             {posts.map((post, index) => (
@@ -33,7 +35,7 @@ export async function getStaticProps() {
   const posts = (await getPosts()) || [];
   return {
     props: {
-      posts
-    }
+      posts,
+    },
   };
 }
