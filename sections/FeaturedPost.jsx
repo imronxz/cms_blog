@@ -35,6 +35,7 @@ const PostTerkait = () => {
     });
   }, []);
 
+    /* COstum Arrow Left */
   const CustomLeftArrow = (
     <div className="absolute arrow-btn left-0 text-center py-3 cursor-pointer bg-pink-600 rounded-full">
       <svg
