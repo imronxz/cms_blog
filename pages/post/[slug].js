@@ -7,11 +7,17 @@ import {
   Admin,
   Comments,
   CommentForm,
+  Loader
 } from '../../components';
 import { AdjacentPosts } from '../../sections';
 
 
 function DetailPost({ post }) {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <Loader />;
+  }
   return (
     <div className="container mx-auto p-10 mb-8">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
@@ -28,8 +34,8 @@ function DetailPost({ post }) {
           <div className="relative lg:sticky top-8">
             <PostWidget
               slug={post.slug}
-              kategoris={post.kategoris.map((i) => {
-                i.slug;
+              kategoris={post.kategoris.map((post) => {
+                post.slug;
               })}
             />
             <Categories />
