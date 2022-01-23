@@ -161,7 +161,7 @@ export const kirimKomentar = async (obj) => {
   return result.json();
 };
 
-// TODO: @kategoripost @
+// TODO: getKomentar to backend next.js api/komentar
 export const getKomentar = async (slug) => {
   const query = gql`
     query GetKomentar($slug: String!) {
